@@ -74,10 +74,10 @@
   begin
   declare reqm varchar(20);
   if n < 12  then 
-  set reqm = ‘Low stock’;
+  set reqm = "ALERT : Low stock";
   elseif (n > 12 and n <=50) then 
   set reqm = “Adequate”;
-  elseif n >50 then
+  elseif n > 50 then
   set reqm = “More Than Enough”; 
   end if;
   return (reqm);
@@ -97,7 +97,7 @@
    set price = “Low Price”;
    elseif (n > 500 and n <=2000) then 
    set price = “Medium Price”;
-   elseif n >2000 then
+   elseif n > 2000 then
    set price = “High Price”; 
    end if;
    return (price);
@@ -106,7 +106,7 @@
    ```
   ---
   
-  ### Functions
+  ### Procedures
   
   lorem ipsum
   
