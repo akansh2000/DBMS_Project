@@ -130,7 +130,7 @@ Delimiter $$
 Create procedure displayTable( IN tname varchar (30))
 Begin
 Set @table = name;
-Set @sql_text = concat (“select *from “, @table );
+Set @sql_text = concat (“select * from “, @table );
 Prepare stmt from @sql_text;
 Execute stmt;
 End $$
