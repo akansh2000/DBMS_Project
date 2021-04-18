@@ -103,6 +103,19 @@
    end $$
    delimiter ;
    ```
+
+* Function to sort by category.
+
+  ```sql
+  DELIMITER //
+  create procedure category(IN name varchar(45), IN cat varchar(45))
+  BEGIN
+  set @table=name;
+  set @sql_txt=concat('select * from ',@table,' where category="',cat,'"');
+  prepare stmt from @sql_txt;
+  execute stmt;
+  END //	
+  DELIMITER ;
   ---
   
   ### Procedures
