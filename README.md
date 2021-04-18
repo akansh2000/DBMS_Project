@@ -64,7 +64,7 @@
   ---
   ### Functions
   
-  * Function to check the availability of stock.
+ * Function to check the availability of stock.
 
   ```sql
   delimiter $$
@@ -85,7 +85,7 @@
   delimiter ;
   ```
   
-  * Function to check the pricing of available product. 
+* Function to check the pricing of available product. 
   
    ```sql
    delimiter $$
@@ -109,6 +109,6 @@
   
   ### Procedures
   
-  lorem ipsum
+* lorem ipsum
   
   ---
