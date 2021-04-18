@@ -109,6 +109,33 @@
   
   ### Procedures
   
-* lorem ipsum
+* Procedure to insert values into the designated table - 
+  * User Table -
+    ```sql
+    Delimiter $$ 
+    Create procedure insertDUser( UID INT, Fname VARCHAR(45), Lname VARCHAR(45), Email TEXT , Pwd TEXT, h TEXT, C VARCHAR(45), S VARCHAR(45), P INT)
+    Begin
+    Insert into user (user_id, first_name, last_name, email, password, house, city, state, pincode) values(uid, fname , lname, email, pwd, h ,c,s,p );
+    End $$
+    Delimiter ;  
+    ```
+ 
+  * Produuct Table - To be discussed and added.
+  * Cart Table - To be discussed and added.
+  * Bill Table - To be discussed and added.
+
+* Procedure to display values of the designated table - 
+```sql
+Delimiter $$ 
+Create procedure displayTable( IN tname varchar (30))
+Begin
+Set @table = name;
+Set @sql_text = concat (“select *from “, @table );
+Prepare stmt from @sql_text;
+Execute stmt;
+End $$
+Delimiter ;  
+```
+   
   
   ---
