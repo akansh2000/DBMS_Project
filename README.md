@@ -14,7 +14,7 @@
     Last_name VARCHAR(45) NOT NULL, 
     Email TEXT NOT NULL, 
     Password TEXT NOT NULL,
-    house TEXT, 
+    House TEXT NOT NULL, 
     City VARCHAR(45) NOT NULL, 
     State VARCHAR(45) NOT NULL, 
     Pincode INT NOT NULL, 
@@ -23,37 +23,36 @@
 
   CREATE TABLE product
   (
-    Product_ID INT NOT NULL, 
-    Price DECIMAL NOT NULL, 
+    Product_ID INT AUTO_INCREMENT NOT NULL, 
     Name VARCHAR(45) NOT NULL, 
-    Description VARCHAR(500) NOT NULL, 
+    Description VARCHAR(500), 
+    Price DECIMAL NOT NULL, 
+    Stock INT NOT NULL, 
     Image TEXT NOT NULL, 
-    Stock INT, 
     Category VARCHAR(45) NOT NULL, 
-    PRIMARY KEY(Product_id)
+    PRIMARY KEY(Product_ID)
   ); 
 
   CREATE TABLE cart
   (
-    Product_id INT NOT NULL, 
-    User_id INT AUTO_INCREMENT NOT NULL, 
-    Quantity INT NOT NULL, 
-    Price DECIMAL NOT NULL, 
+    Product_ID INT NOT NULL, 
+    User_ID INT NOT NULL, 
+    Quantity INT NOT NULL,  
     Timestamp TIMESTAMP NOT NULL, 
-    FOREIGN KEY(Product_id) REFERENCES product(Product_id), 
-    FOREIGN KEY(User_id) REFERENCES user(User_id)
+    FOREIGN KEY(Product_ID) REFERENCES product(Product_ID), 
+    FOREIGN KEY(User_ID) REFERENCES user(User_ID)
   );
   
-  CREATE TABLE bill
+  CREATE TABLE sales
   (
+    Invoice_no INT AUTO_INCREMENT NOT NULL, 
     Price DECIMAL NOT NULL, 
-    Invoice_no INT NOT NULL, 
     Timestamp TIMESTAMP NOT NULL, 
-    User_id INT AUTO_INCREMENT NOT NULL, 
-    Product_id INT NOT NULL, 
+    User_ID INT NOT NULL, 
+    Product_ID INT NOT NULL, 
     PRIMARY KEY(Invoice_no), 
-    FOREIGN KEY(User_id) REFERENCES user(User_id),
-    FOREIGN KEY(Product_id) REFERENCES product(Product_id)
+    FOREIGN KEY(User_ID) REFERENCES user(User_ID),
+    FOREIGN KEY(Product_ID) REFERENCES product(Product_ID)
   );   
   ```
   

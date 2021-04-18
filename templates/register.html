@@ -50,22 +50,29 @@
         </div>
       </header>
 
-      <section class="text-gray-500 bg-gray-900 body-font " style="align-items: center;align-self: center; align-content: center; ">
-        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-         	<div class="lg:w-2/6 md:w-1/2 bg-gray-800 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0" style="position:relative; left: 50%; transform: translateX(-50%); height: 650px; width: 400px;">
-         		<h2 class="text-white text-lg font-medium title-font mb-5" style="text-align: center;">Register</h2>
+      <section class="text-gray-500 bg-gray-900 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap justify-center items-center">
+         	<div class="lg:w-2/6 md:w-1/2 bg-gray-800 rounded-lg p-8 flex flex-col items-center w-full mt-10 md:mt-0">
+         		<h5 class="text-white text-lg font-medium title-font mb-5">Create Account</h2>
          		<form action="/register" method="POST" onsubmit="return validate()">
-         		 <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="firstName" placeholder="First Name" type="text" style="position: fixed; left: 50%; top: 15%; width: 240px; transform: translateX(-50%);" required>
-         		  <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="lastName" placeholder="Last Name" type="text" style="position: fixed; left: 50%; width: 240px; top: 25%; transform: translateX(-50%); " required>
-         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="dob" placeholder="Date of Birth" type="text" onfocus="(this.type='date')" style="position: fixed; left: 50%; top: 35%; transform: translateX(-50%); width: 240px;" required>
-         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="email" placeholder="E-mail" type="email" style="position: fixed; left: 50%; width: 240px; top: 45%; transform: translateX(-50%);" required>
-         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="password" placeholder="Password" id="password" type="password" style="position: fixed; left: 50%; width: 240px; top: 55%; transform: translateX(-50%);" required>
-         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4" name="cpassword" placeholder="Confirm Password" id="cpassword" type="password" style="position: fixed; left: 50%; width: 240px; top: 65%; transform: translateX(-50%);" required>
-         		   	<input type="checkbox" id="terms" name="terms" value="terms" style="position: fixed; left: 18%; top: 75.5%;  " label = "I agree to the terms" required>
-                <p style="position: fixed;top: 74.5%; left: 22%;">I agree to the <a href="/terms" style="text-decoration: underline; " class="hover:text-white">Terms & Conditions</p></a>
-                <i style="text-align: center; position: fixed; top: 78.5%; left: 50%; transform: translateX(-50%);"> {{error}}</i> <br>
-                <button type="submit" value="Register" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" style="position: fixed;left: 50%; transform: translateX(-50%); top: 83%;" >Register</button><br>
-                <a href="/loginForm" style="position: fixed; top: 91%; left: 60px; text-decoration: underline; " class="hover:text-white">Already have an account? Login here</a>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="firstName" placeholder="First Name" type="text"  required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="lastName" placeholder="Last Name" type="text" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="email" placeholder="E-mail" type="email" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="password" placeholder="Password" id="password" type="password" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="cpassword" placeholder="Confirm Password" id="cpassword" type="password" required>
+              <h2 class="text-white font-medium title-font px-2 my-2">Address Details</h2>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="house" placeholder="House Number" type="text" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="city" placeholder="City" type="text" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="state" placeholder="State" type="text" required>
+         		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="pincode" placeholder="PIN Code" type="text" pattern="[0-9]*" required>	
+               <input class="px-4 py-2 mb-4" type="radio" id="terms" name="terms" value="terms" required>
+               <label for="terms">I agree to the <a href="/terms" style="text-decoration: underline; " class="hover:text-white">Terms & Conditions</a></label>
+               {% if error %}
+               <p class=error><strong>Error:</strong> {{ error }}
+                 <br>
+                {% endif %}
+                <button type="submit" value="Register" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button><br>
+                <div><a href="/loginForm" class="hover:text-white">Already have an account? Login here</a></div>
          		</form>
           </div>
         </div>
