@@ -64,7 +64,7 @@
   ---
   ### Functions
   
- * Function to check the availability of stock.
+* Function to check the availability of stock.
 
   ```sql
   delimiter $$
