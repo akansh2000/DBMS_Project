@@ -24,9 +24,9 @@
   CREATE TABLE product
   (
     Product_ID INT AUTO_INCREMENT NOT NULL, 
-    Name VARCHAR(45) NOT NULL, 
-    Description VARCHAR(500), 
-    Price DECIMAL NOT NULL, 
+    Name TEXT NOT NULL, 
+    Description TEXT, 
+    Price DECIMAL(9,2) NOT NULL, 
     Stock INT NOT NULL, 
     Image TEXT NOT NULL, 
     Category VARCHAR(45) NOT NULL, 
@@ -45,7 +45,7 @@
   CREATE TABLE sales
   (
     Invoice_no INT AUTO_INCREMENT NOT NULL, 
-    Price DECIMAL NOT NULL, 
+    Price DECIMAL(9,2) NOT NULL, 
     Timestamp TIMESTAMP NOT NULL, 
     User_ID INT NOT NULL, 
     Product_ID INT NOT NULL, 

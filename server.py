@@ -47,6 +47,18 @@ def index():
         loggedIn, firstName, noOfItems = getLoginDetails()
         return render_template('index.html',firstName = firstName,loggedIn = loggedIn , noOfItems = noOfItems)
 
+# catalog
+@app.route("/catalog")
+def catalog():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        loggedIn, firstName, noOfItems = getLoginDetails()
+        category = request.args.get('category').title()
+        query = f"SELECT * FROM product"
+        data = execute_read_query(connection, query)
+        return render_template('catalog.html',firstName = firstName,loggedIn = loggedIn , noOfItems = noOfItems, itemData = data, category= category)
+
 # Login
 @app.route("/loginForm")
 def loginForm():
