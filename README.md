@@ -2,8 +2,8 @@
 ## Commands
 - Creating database
   ```sql
-  CREATE database ecart;
-  use ecart;
+  CREATE DATABASE ecart;
+  USE ecart;
   ```
 - Creating tables
   ```sql
