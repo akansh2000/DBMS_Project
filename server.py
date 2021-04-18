@@ -17,7 +17,6 @@ def getLoginDetails():
         
         query = f"SELECT User_ID, First_name FROM user WHERE Email = '{session['email']}'"
         data = execute_read_query(connection, query)
-        print(data)
         userID, firstName = data[0][0], data[0][1]
         query = f"SELECT count(product_ID) FROM cart WHERE user_ID = '{userID}'"
         data = execute_read_query(connection, query)
