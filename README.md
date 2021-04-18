@@ -56,3 +56,14 @@
     FOREIGN KEY(Product_id) REFERENCES product(Product_id)
   );   
   ```
+  
+  ## Queries
+  This section conatins all triggers, procedures and functions. 
+  ---
+  ### Triggers
+  lorem ipsum
+  ---
+  
+  ### Functions
+  lorem ipsum
+  ---
