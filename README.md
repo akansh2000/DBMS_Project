@@ -58,12 +58,18 @@
   ```
   
   ## Queries
+  
   This section conatins all triggers, procedures and functions. 
+  
   ---
   ### Triggers
+  
   lorem ipsum
+  
   ---
   
   ### Functions
+  
   lorem ipsum
+  
   ---
