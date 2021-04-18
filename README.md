@@ -152,3 +152,14 @@ Delimiter ;
    
   
   ---
+  
+## Triggers
+
+### To be added soon -
+* Trigger to update the number of items present in the cart, everytime he/she/they/it/wtf add or remove an item from the cart  -
+  ```sql
+  ```
+  
+* Trigger to update the total amount of user, everytime he/she/they/it/wtf add or remove an item from the cart -
+  ```sql
+  ```
