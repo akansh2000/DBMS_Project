@@ -2,26 +2,57 @@
 ## Commands
 - Creating database
   ```sql
-  CREATE database ecart;
-  use ecart;
+  CREATE DATABASE ecart;
+  USE ecart;
   ```
 - Creating tables
   ```sql
-  CREATE table user(
-    User_ID int auto_increment not null, 
-    email text not null, 
-    password text not null, house text, 
-    city varchar(45) not null, 
-    state varchar(45) not null, 
-    pincode int not null, 
-    first_name varchar(45) not null, 
-    last_name varchar(45) not null, 
-    Primary key(user_id)
-    );
+  CREATE TABLE user
+  (
+    User_ID INT AUTO_INCREMENT NOT NULL, 
+    First_name VARCHAR(45) NOT NULL, 
+    Last_name VARCHAR(45) NOT NULL, 
+    Email TEXT NOT NULL, 
+    Password TEXT NOT NULL,
+    house TEXT, 
+    City VARCHAR(45) NOT NULL, 
+    State VARCHAR(45) NOT NULL, 
+    Pincode INT NOT NULL, 
+    PRIMARY KEY(User_ID)
+  );
 
-  CREATE table product(product_ID int not null, price decimal not null, name varchar(45) not null, description varchar(500) not null, image text not null, stock int, category varchar(45) not null, primary key(product_id)); 
+  CREATE TABLE product
+  (
+    Product_ID INT NOT NULL, 
+    Price DECIMAL NOT NULL, 
+    Name VARCHAR(45) NOT NULL, 
+    Description VARCHAR(500) NOT NULL, 
+    Image TEXT NOT NULL, 
+    Stock INT, 
+    Category VARCHAR(45) NOT NULL, 
+    PRIMARY KEY(Product_id)
+  ); 
 
-  CREATE table cart(product_id int not null, user_id int auto_increment not null, quantity int not null, price decimal not null, timestamp timestamp not null, Foreign key(product_id) references product(product_id), Foreign key(user_id) references user(user_id));
+  CREATE TABLE cart
+  (
+    Product_id INT NOT NULL, 
+    User_id INT AUTO_INCREMENT NOT NULL, 
+    Quantity INT NOT NULL, 
+    Price DECIMAL NOT NULL, 
+    Timestamp TIMESTAMP NOT NULL, 
+    FOREIGN KEY(Product_id) REFERENCES product(Product_id), 
+    FOREIGN KEY(User_id) REFERENCES user(User_id)
+  );
   
-  CREATE table bill(price decimal not null, Invoice_no int not null, timestamp timestamp not null, user_id int auto_increment, product_id int, Primary key(Invoice_no), Foreign key(user_id) references user(user_id), Foreign key(product_id) references product(product_id));   
+  CREATE TABLE bill
+  (
+    Price DECIMAL NOT NULL, 
+    Invoice_no INT NOT NULL, 
+    Timestamp TIMESTAMP NOT NULL, 
+    User_id INT AUTO_INCREMENT NOT NULL, 
+    Product_id INT NOT NULL, 
+    PRIMARY KEY(Invoice_no), 
+    FOREIGN KEY(User_id) REFERENCES user(User_id),
+    FOREIGN KEY(Product_id) REFERENCES product(Product_id)
+  );   
   ```
