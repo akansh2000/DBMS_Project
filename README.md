@@ -126,7 +126,7 @@
     Create procedure insertProduct( pid int,Name TEXT , Des TEXT, P DECIMAL(9,2), S INT, Image TEXT, Category VARCHAR(45))
     Begin
     If (exists(select * from product where product.product_id = pid) ) then
-    Update product set quantity = quantiy +1 ;
+    Update product set quantity = quantity + 1 where product.product_id = pid ;
     Else 
     Insert into product(Product_ID, Name, Description, Price, Stock, Image, Category) values(name, des ,p ,s ,I ,c);
     End if;
