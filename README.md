@@ -37,8 +37,7 @@
   (
     Product_ID INT NOT NULL, 
     User_ID INT NOT NULL, 
-    Quantity INT NOT NULL,  
-    Timestamp TIMESTAMP NOT NULL, 
+    Quantity INT NOT NULL, 
     FOREIGN KEY(Product_ID) REFERENCES product(Product_ID), 
     FOREIGN KEY(User_ID) REFERENCES user(User_ID)
   );
@@ -112,9 +111,9 @@
   * User Table -
     ```sql
     Delimiter $$ 
-    Create procedure insertDUser( UID INT, Fname VARCHAR(45), Lname VARCHAR(45), Email TEXT , Pwd TEXT, h TEXT, C VARCHAR(45), S VARCHAR(45), P INT)
+    Create procedure insertUser(Fname VARCHAR(45), Lname VARCHAR(45), Email TEXT , Pwd TEXT, h TEXT, C VARCHAR(45), S VARCHAR(45), P INT)
     Begin
-    Insert into user (user_id, first_name, last_name, email, password, house, city, state, pincode) values(uid, fname , lname, email, pwd, h ,c,s,p );
+    Insert into user (first_name, last_name, email, password, house, city, state, pincode) values(fname , lname, email, pwd, h ,c,s,p );
     End $$
     Delimiter ;  
     ```
