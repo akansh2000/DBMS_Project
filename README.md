@@ -24,9 +24,9 @@
   CREATE TABLE product
   (
     Product_ID INT AUTO_INCREMENT NOT NULL, 
-    Name VARCHAR(45) NOT NULL, 
-    Description VARCHAR(500), 
-    Price DECIMAL NOT NULL, 
+    Name TEXT NOT NULL, 
+    Description TEXT, 
+    Price DECIMAL(9,2) NOT NULL, 
     Stock INT NOT NULL, 
     Image TEXT NOT NULL, 
     Category VARCHAR(45) NOT NULL, 
@@ -45,7 +45,7 @@
   CREATE TABLE sales
   (
     Invoice_no INT AUTO_INCREMENT NOT NULL, 
-    Price DECIMAL NOT NULL, 
+    Price DECIMAL(9,2) NOT NULL, 
     Timestamp TIMESTAMP NOT NULL, 
     User_ID INT NOT NULL, 
     Product_ID INT NOT NULL, 
@@ -131,7 +131,22 @@
     Delimiter ;  
     ```
  
-  * Produuct Table - To be discussed and added.
+  * Produuct Table - To add into product table, given conditions that -
+    * If product already exists in the cart, then increment by one
+    * else insert new values;
+    ```sql
+    Delimiter $$ 
+    Create procedure insertProduct( pid int,Name TEXT , Des TEXT, P DECIMAL(9,2), S INT, Image TEXT, Category VARCHAR(45))
+    Begin
+    If (exists(select * from product where product.product_id = pid) ) then
+    Update product set quantity = quantity + 1 where product.product_id = pid ;
+    Else 
+    Insert into product(Product_ID, Name, Description, Price, Stock, Image, Category) values(name, des ,p ,s ,I ,c);
+    End if;
+    End $$
+    Delimiter ;  
+
+    ```
   * Cart Table - To be discussed and added.
   * Bill Table - To be discussed and added.
 
@@ -150,3 +165,14 @@ Delimiter ;
    
   
   ---
+  
+## Triggers
+
+### To be added soon -
+* Trigger to update the number of items present in the cart, everytime he/she/they/it/wtf add or remove an item from the cart  -
+  ```sql
+  ```
+  
+* Trigger to update the total amount of user, everytime he/she/they/it/wtf add or remove an item from the cart -
+  ```sql
+  ```

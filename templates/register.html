@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scaled = 1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/logo.css">
-
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}">
 
     </script>
@@ -60,7 +58,7 @@
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="email" placeholder="E-mail" type="email" required>
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="password" placeholder="Password" id="password" type="password" required>
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="cpassword" placeholder="Confirm Password" id="cpassword" type="password" required>
-              <h2 class="text-white font-medium title-font px-2 my-2">Address Details</h2>
+              <h2 class="text-white font-medium title-font px-2 my-2 text-center">Address Details</h2>
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="house" placeholder="House Number" type="text" required>
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="city" placeholder="City" type="text" required>
          		   <input class="bg-gray-900 rounded border text-white border-gray-900 focus:outline-none focus:border-indigo-500 text-base px-4 py-2 mb-4 w-full" name="state" placeholder="State" type="text" required>
@@ -71,8 +69,8 @@
                <p class=error><strong>Error:</strong> {{ error }}
                  <br>
                 {% endif %}
-                <button type="submit" value="Register" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button><br>
-                <div><a href="/loginForm" class="hover:text-white">Already have an account? Login here</a></div>
+                <button type="submit" value="Register" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg w-full">Register</button><br>
+                <div>Already have an account? <a href="/loginForm" class="hover:text-white underline">Login here</a></div>
          		</form>
           </div>
         </div>
