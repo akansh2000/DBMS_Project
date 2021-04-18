@@ -62,10 +62,48 @@
   This section conatins all triggers, procedures and functions. 
   
   ---
-  ### Triggers
+  ### Functions
   
-  lorem ipsum
+  1. Function to check the availability of stock.
+
+  ```sql
+  delimiter $$
+  create function cat_stock(n int)
+  returns varchar(20)
+  deterministic
+  begin
+  declare reqm varchar(20);
+  if n < 12  then 
+  set reqm = ‘Low stock’;
+  elseif (n > 12 and n <=50) then 
+  set reqm = “Adequate”;
+  elseif n >50 then
+  set reqm = “More Than Enough”; 
+  end if;
+  return (reqm);
+  end $$
+  delimiter ;
+  ```
+  2. Function to check the pricing of available product. 
   
+   ```sql
+   delimiter $$
+   create function cat_price(n int)
+   returns varchar(20)
+   deterministic
+   begin
+   declare price varchar(20);
+   if n < 500  then 
+   set price = “Low Price”;
+   elseif (n > 500 and n <=2000) then 
+   set price = “Medium Price”;
+   elseif n >2000 then
+   set price = “High Price”; 
+   end if;
+   return (price);
+   end $$
+   delimiter ;
+   ```
   ---
   
   ### Functions
