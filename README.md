@@ -186,7 +186,8 @@ BEGIN
 update product set description="No description available for this product" where description='';
 END //
 DELIMITER ;
-  
+
+  ```
   ---
   
 ### Triggers
