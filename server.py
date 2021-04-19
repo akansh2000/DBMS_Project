@@ -70,6 +70,20 @@ def productDescription():
     data = data[0]
     return render_template('product.html', data=data, firstName = firstName, loggedIn = loggedIn, noOfItems = noOfItems,)
     
+# add to cart
+@app.route("/addToCart")
+def addToCart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        productId = int(request.args.get('productId'))
+        query = f"SELECT User_ID FROM user WHERE Email = \'{session['email']}\'"
+        data = execute_read_query(connection, query)
+        userId = data[0][0]
+        query = f"CALL user_cart({productId}, {userId})"
+        execute_query(connection, query)
+        return redirect(url_for('index'))
+
 # Login
 @app.route("/loginForm")
 def loginForm():

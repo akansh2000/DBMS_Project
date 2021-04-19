@@ -56,32 +56,6 @@ display: block;
         <span class="ml-3 text-xl">E-Cart</span>
       </a>
 
-        <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" style=" position: absolute; left: 41%; transform: translateX(-50%);">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 300" class="text-gray-500 bg-gray-900 body-font" id="yaha">
-
-          <!-- Symbol -->
-          <symbol id="s-text">
-            <text text-anchor="middle"
-                    x="50%" y="50%" dy=".35em">
-                LOTTERY
-             </text>
-          </symbol>
-        
-          <!-- Duplicate symbols -->
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-        
-        </svg>
-      </a>
-
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a href="/" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 hover:text-white"  style="margin-right: 5px; height: 40px;" >Home</a> 
         <a href="/cart" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 hover:text-white" style="margin-right: 5px; height: 40px;">Cart ({{noOfItems}})
@@ -100,7 +74,7 @@ display: block;
            {% else %}
           <button class="dropbtn" >Hello, {{firstName}}</button>
           <div class="dropdown-content">
-            <a href="/myTickets">My Cart</a><hr>
+            <a href="/myTickets">My Order</a><hr>
             <a href="/logout">Sign Out
           <path d="M5 12h14M12 5l7 7-7 7"></path></a>
           </div>
@@ -121,20 +95,10 @@ display: block;
               <h1 class="sm:w-2/5 text-white font-medium title-font text-2xl mb-2 sm:mb-0">Products in {{category}}</h1>
             </div>
           </div>
-        <!-- <div class="container px-5 py-24 mx-auto">
-          <div class="flex flex-col">
-            <div class="h-1 bg-gray-800 rounded overflow-hidden">
-              <div class="w-24 h-full bg-indigo-500"></div>
-            </div>
-            <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
-              <h1 class="sm:w-2/5 text-white font-medium title-font text-2xl mb-2 sm:mb-0">Other Tickets</h1>
-            </div>
-          </div> -->
-        
+          
           <div class="flex flex-wrap -m-4">
-            
             {% for data in itemData %}
-            <div class="lg:w-1/4 md:w-1/2 p-4 w-full ">
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
               <a class="rounded overflow-hidden">
                 <a href="/productDescription?productId={{data[0]}}">
                     <img  alt = "{{data[3]}}" src={{ url_for('static', filename='uploads/' + data[5]) }} />

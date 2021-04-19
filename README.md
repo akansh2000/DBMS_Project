@@ -45,8 +45,10 @@
   CREATE TABLE sales
   (
     Invoice_no INT AUTO_INCREMENT NOT NULL, 
-    Price DECIMAL(9,2) NOT NULL, 
-    Timestamp TIMESTAMP NOT NULL, 
+    Timestamp TIMESTAMP NOT NULL,
+    Quantity INT NOT NULL, 
+    Price DECIMAL(9,2) NOT NULL,
+    Total_ammount DECIMAL(9,2) NOT NULL,
     User_ID INT NOT NULL, 
     Product_ID INT NOT NULL, 
     PRIMARY KEY(Invoice_no), 
@@ -120,15 +122,15 @@
 * Function to update and insert into cart.
   ```sql
   DELIMITER //
-  create procedure user_cart(IN P_ID INT, IN U_ID INT, IN q INT)
+  create procedure user_cart(IN P_ID INT, IN U_ID INT)
   BEGIN
   DECLARE mycount INT;
   set mycount= (select count(*) from cart where Product_ID=P_ID AND User_ID=U_ID);
   if mycount>0
   then
-  update cart set quantity=quantity+q where Product_ID=P_ID AND User_ID=U_ID;
+  update cart set quantity=quantity+1 where Product_ID=P_ID AND User_ID=U_ID;
   else
-  insert into cart(Product_ID, User_ID, quantity) values(P_ID, U_ID, q);
+  insert into cart(Product_ID, User_ID, quantity) values(P_ID, U_ID, 1);
   END if;
   END //
   DELIMITER ;
@@ -147,22 +149,6 @@
     Delimiter ;  
     ```
  
-  * Product Table - To add into product table, given conditions that -
-    * If product already exists in the cart, then increment by one
-    * else insert new values;
-    ```sql
-    Delimiter $$ 
-    Create procedure insertProduct( pid int,Name TEXT , Des TEXT, P DECIMAL(9,2), S INT, Image TEXT, Category VARCHAR(45))
-    Begin
-    If (exists(select * from product where product.product_id = pid) ) then
-    Update product set quantity = quantity + 1 where product.product_id = pid ;
-    Else 
-    Insert into product(Product_ID, Name, Description, Price, Stock, Image, Category) values(name, des ,p ,s ,I ,c);
-    End if;
-    End $$
-    Delimiter ;  
-
-    ```
   * Cart Table - To be discussed and added.
   * Bill Table - To be discussed and added.
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scaled = 1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <title>Product</title>
+    <title>{{data[1]}}</title>
     <style >.dropbtn {
       background-color: #2d3748;
       color: white;
@@ -15,7 +15,6 @@
       height: 40px;
       padding: 2px;
       color: #a0aec0;
-
 }
 
 .dropdown {
@@ -53,35 +52,8 @@ display: block;
         <svg xmlns="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span class="ml-3 text-xl">Product View</span>
+        <span class="ml-3 text-xl">E-Cart</span>
       </a>
-
-                <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" style=" position: absolute; left: 40%; transform: translateX(-40%);">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 600 300" class="text-gray-500 bg-gray-900 body-font" id="yaha">
-
-          <!-- Symbol -->
-          <symbol id="s-text">
-            <text text-anchor="middle"
-                    x="50%" y="50%" dy=".45em">
-                LOTTERY
-             </text>
-          </symbol>
-        
-          <!-- Duplicate symbols -->
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-          <use xlink:href="#s-text" class="text"
-                    ></use>
-        
-        </svg>
-      </a>
-
 
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
         <a href="/" class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0 hover:text-white"  style="margin-right: 5px; height: 40px;" >Home</a> 
@@ -101,8 +73,7 @@ display: block;
            {% else %}
           <button class="dropbtn" >Hello, {{firstName}}</button>
           <div class="dropdown-content">
-            <a href="/myTickets">My Tickets</a><hr>
-            <a href="/custom">Create Ticket</a><hr>
+            <a href="/myTickets">My Orders</a><hr>
             <a href="/logout">Sign Out
           <path d="M5 12h14M12 5l7 7-7 7"></path></a>
           </div>
@@ -132,7 +103,11 @@ display: block;
               </div>
               <p class="leading-relaxed">{{data[2]}}</p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-800 mb-5">
-
+                <div class="flex ml-6 items-center">
+                  <div class="relative text-black">
+              </div>
+              <p class="leading-relaxed">{{data[4]}} In Stock</p>
+                </div>
                 <div class="flex ml-6 items-center">
                   <div class="relative">
                     </span>
@@ -142,10 +117,18 @@ display: block;
               <div class="flex">
                 <span class="title-font font-medium text-2xl text-white">₹{{data[3]}}</span>
                 <a href="/addToCart?productId={{data[0]}}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Add to Cart</a>
-              </div>
+            </div>
             </div>
           </div>
         </div>
       </section>
 </body>
+<script>
+  function getQty(){
+    let qty = document.getElementById('quantity');
+    qty = qty.value;
+    return qty;
+  }
+
+</script>
 </html>
