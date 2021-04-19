@@ -148,7 +148,7 @@
     Delimiter ;  
     ```
  
-  * Produuct Table - To add into product table, given conditions that -
+  * Product Table - To add into product table, given conditions that -
     * If product already exists in the cart, then increment by one
     * else insert new values;
     ```sql
@@ -179,7 +179,14 @@ Execute stmt;
 End $$
 Delimiter ;  
 ```
-   
+* Call this procedure just after importing csv file
+```sql
+DELIMITER //
+create procedure description()
+BEGIN
+update product set description="No description available for this product" where description='';
+END //
+DELIMITER ;
   
   ---
   
