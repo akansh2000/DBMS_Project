@@ -108,10 +108,9 @@
 
   ```sql
   DELIMITER //
-  create procedure category(IN name varchar(45), IN cat varchar(45))
+  create procedure category(IN cat varchar(45))
   BEGIN
-  set @table=name;
-  set @sql_txt=concat('select * from ',@table,' where category="',cat,'"');
+  set @sql_txt=concat('SELECT * FROM product WHERE category="',cat,'"');
   prepare stmt from @sql_txt;
   execute stmt;
   END //	
@@ -131,7 +130,7 @@
     Delimiter ;  
     ```
  
-  * Produuct Table - To add into product table, given conditions that -
+  * Product Table - To add into product table, given conditions that -
     * If product already exists in the cart, then increment by one
     * else insert new values;
     ```sql

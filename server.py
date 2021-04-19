@@ -55,7 +55,8 @@ def catalog():
     else:
         loggedIn, firstName, noOfItems = getLoginDetails()
         category = request.args.get('category').title()
-        query = f"SELECT * FROM product"
+        # query = f"call category('{category}')"
+        query = f"SELECT * FROM product WHERE category = '{category}'" 
         data = execute_read_query(connection, query)
         return render_template('catalog.html',firstName = firstName,loggedIn = loggedIn , noOfItems = noOfItems, itemData = data, category= category)
 
