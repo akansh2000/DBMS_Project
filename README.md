@@ -108,10 +108,9 @@
 
   ```sql
   DELIMITER //
-  create procedure category(IN name varchar(45), IN cat varchar(45))
+  create procedure category(IN cat varchar(45))
   BEGIN
-  set @table=name;
-  set @sql_txt=concat('select * from ',@table,' where category="',cat,'"');
+  set @sql_txt=concat('SELECT * FROM product WHERE category="',cat,'"');
   prepare stmt from @sql_txt;
   execute stmt;
   END //	
