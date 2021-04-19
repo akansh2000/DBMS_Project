@@ -116,6 +116,23 @@
   END //	
   DELIMITER ;
   ---
+
+* Function to update and insert into cart.
+  ```sql
+  DELIMITER //
+  create procedure user_cart(IN P_ID INT, IN U_ID INT, IN q INT)
+  BEGIN
+  DECLARE mycount INT;
+  set mycount= (select count(*) from cart where Product_ID=P_ID AND User_ID=U_ID);
+  if mycount>0
+  then
+  update cart set quantity=quantity+q where Product_ID=P_ID AND User_ID=U_ID;
+  else
+  insert into cart(Product_ID, User_ID, quantity) values(P_ID, U_ID, q);
+  END if;
+  END //
+  DELIMITER ;
+  ```
   
   ### Procedures
   
