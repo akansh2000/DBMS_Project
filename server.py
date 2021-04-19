@@ -60,6 +60,16 @@ def catalog():
         data = execute_read_query(connection, query)
         return render_template('catalog.html',firstName = firstName,loggedIn = loggedIn , noOfItems = noOfItems, itemData = data, category= category)
 
+# Product Page
+@app.route("/productDescription")
+def productDescription():
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    productId = request.args.get('productId')
+    query = f"SELECT * FROM product WHERE Product_ID = {productId}"
+    data = execute_read_query(connection, query)
+    data = data[0]
+    return render_template('product.html', data=data, firstName = firstName, loggedIn = loggedIn, noOfItems = noOfItems,)
+    
 # Login
 @app.route("/loginForm")
 def loginForm():
