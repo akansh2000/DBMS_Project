@@ -139,15 +139,15 @@
   ### Procedures
   
 * Procedure to insert values into the designated table - 
-  * User Table -
-    ```sql
-    Delimiter $$ 
-    Create procedure insertUser(Fname VARCHAR(45), Lname VARCHAR(45), Email TEXT , Pwd TEXT, h TEXT, C VARCHAR(45), S VARCHAR(45), P INT)
-    Begin
-    Insert into user (first_name, last_name, email, password, house, city, state, pincode) values(fname , lname, email, pwd, h ,c,s,p );
-    End $$
-    Delimiter ;  
-    ```
+* User Table -
+ ```sql
+ Delimiter $$ 
+ Create procedure insertUser(Fname VARCHAR(45), Lname VARCHAR(45), Email TEXT , Pwd TEXT, h TEXT, C VARCHAR(45), S VARCHAR(45), P INT)
+ Begin
+ Insert into user (first_name, last_name, email, password, house, city, state, pincode) values(fname , lname, email, pwd, h ,c,s,p );
+ End $$
+ Delimiter ;  
+  ```
  
   * Cart Table - To be discussed and added.
   * Bill Table - To be discussed and added.
