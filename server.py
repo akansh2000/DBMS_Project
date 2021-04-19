@@ -84,6 +84,38 @@ def addToCart():
         execute_query(connection, query)
         return redirect(url_for('index'))
 
+# Cart
+@app.route("/cart")
+def cart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    email = session['email']
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f"SELECT product.product_ID, product.name, product.price, product.image, cart.quantity FROM product, cart WHERE product.product_ID = cart.product_Id AND cart.user_Id = '{userId}'"
+    products = execute_read_query(connection, query)
+    # return str(data)
+    totalPrice = 0
+    for row in products:
+        totalPrice += ( row[2] * row[4])
+    return render_template('cart.html', products=products, totalPrice=totalPrice, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
+
+# remove from cart
+@app.route("/removeFromCart")
+def removeFromCart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    email = session['email']
+    productId = int(request.args.get('productId'))
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f"DELETE FROM cart WHERE User_ID = '{userId}' AND Product_ID = '{productId}'"
+    execute_query(connection, query)
+    return redirect(url_for('cart'))
+
 # Login
 @app.route("/loginForm")
 def loginForm():
