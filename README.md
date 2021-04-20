@@ -48,7 +48,7 @@
     Timestamp TIMESTAMP NOT NULL,
     Quantity INT NOT NULL, 
     Price DECIMAL(9,2) NOT NULL,
-    Total_ammount DECIMAL(9,2) NOT NULL,
+    Total_amount DECIMAL(9,2) NOT NULL,
     User_ID INT NOT NULL, 
     Product_ID INT NOT NULL, 
     PRIMARY KEY(Invoice_no), 
@@ -148,9 +148,6 @@
  End $$
  Delimiter ;  
   ```
- 
-  * Cart Table - To be discussed and added.
-  * Bill Table - To be discussed and added.
 
 * Procedure to display values of the designated table - 
 ```sql
@@ -174,5 +171,24 @@ END //
 DELIMITER ;
 
   ```
-  ---
- 
+* Trigger which sets the total amount of the cart, when the user adds or removes a product - 
+```sql 
+create trigger total_amount
+before insert on sales
+for each row
+begin
+set new.total_amount = new.price * new.quantity;
+end
+```
+
+---
+
+* Command to import the CSV file - 
+```
+load data local infile 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/product.csv'
+into table product
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
+```

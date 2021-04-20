@@ -14,7 +14,6 @@ def getLoginDetails():
         noOfItems = 0
     else:
         loggedIn = True
-        
         query = f"SELECT User_ID, First_name FROM user WHERE Email = '{session['email']}'"
         data = execute_read_query(connection, query)
         userID, firstName = data[0][0], data[0][1]
@@ -83,6 +82,68 @@ def addToCart():
         query = f"CALL user_cart({productId}, {userId})"
         execute_query(connection, query)
         return redirect(url_for('index'))
+
+# Cart
+@app.route("/cart")
+def cart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    email = session['email']
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f"SELECT product.product_ID, product.name, product.price, product.image, cart.quantity FROM product, cart WHERE product.product_ID = cart.product_Id AND cart.user_Id = '{userId}'"
+    products = execute_read_query(connection, query)
+    # return str(data)
+    totalPrice = 0
+    for row in products:
+        totalPrice += ( row[2] * row[4])
+    return render_template('cart.html', products=products, totalPrice=totalPrice, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
+
+# checkout
+@app.route("/payment")
+def payment():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        email = session['email']
+        query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+        data = execute_read_query(connection, query)
+        userId = data[0][0]
+        query = f'INSERT INTO SALES (quantity, price, user_id, product_id) SELECT cart.quantity, product.price, cart.user_id, cart.product_id FROM cart INNER JOIN product ON cart.product_id = product.product_ID AND User_ID = "{userId}"'
+        data = execute_query(connection, query)
+        query = f'DELETE FROM cart where USER_id = "{userId}"'
+        data = execute_query(connection, query)
+        return render_template('paymentsuccessful.html')
+
+# my orders
+@app.route("/myOrders")
+def myOrders():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    email = session['email']
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f'SELECT product.product_Id, product.name, sales.total_amount, product.image, sales.invoice_no, sales.quantity, sales.price FROM product, sales WHERE product.product_Id = sales.product_Id AND sales.user_Id = "{userId}"'
+    items = execute_read_query(connection, query)
+    return render_template("myOrders.html", items = items, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
+
+# remove from cart
+@app.route("/removeFromCart")
+def removeFromCart():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    email = session['email']
+    productId = int(request.args.get('productId'))
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f"DELETE FROM cart WHERE User_ID = '{userId}' AND Product_ID = '{productId}'"
+    execute_query(connection, query)
+    return redirect(url_for('cart'))
 
 # Login
 @app.route("/loginForm")
