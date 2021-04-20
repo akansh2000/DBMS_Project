@@ -14,7 +14,6 @@ def getLoginDetails():
         noOfItems = 0
     else:
         loggedIn = True
-        
         query = f"SELECT User_ID, First_name FROM user WHERE Email = '{session['email']}'"
         data = execute_read_query(connection, query)
         userID, firstName = data[0][0], data[0][1]
@@ -101,6 +100,36 @@ def cart():
     for row in products:
         totalPrice += ( row[2] * row[4])
     return render_template('cart.html', products=products, totalPrice=totalPrice, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
+
+# checkout
+@app.route("/payment")
+def payment():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    else:
+        email = session['email']
+        query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+        data = execute_read_query(connection, query)
+        userId = data[0][0]
+        query = f'INSERT INTO SALES (quantity, price, user_id, product_id) SELECT cart.quantity, product.price, cart.user_id, cart.product_id FROM cart INNER JOIN product ON cart.product_id = product.product_ID AND User_ID = "{userId}"'
+        data = execute_query(connection, query)
+        query = f'DELETE FROM cart where USER_id = "{userId}"'
+        data = execute_query(connection, query)
+        return render_template('paymentsuccessful.html')
+
+# my orders
+@app.route("/myOrders")
+def myOrders():
+    if 'email' not in session:
+        return redirect(url_for('loginForm'))
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    email = session['email']
+    query = f"SELECT User_ID FROM user WHERE Email = '{email}'"
+    data = execute_read_query(connection, query)
+    userId = data[0][0]
+    query = f'SELECT product.product_Id, product.name, sales.total_amount, product.image, sales.invoice_no, sales.quantity, sales.price FROM product, sales WHERE product.product_Id = sales.product_Id AND sales.user_Id = "{userId}"'
+    items = execute_read_query(connection, query)
+    return render_template("myOrders.html", items = items, loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
 
 # remove from cart
 @app.route("/removeFromCart")

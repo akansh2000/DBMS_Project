@@ -48,7 +48,7 @@
     Timestamp TIMESTAMP NOT NULL,
     Quantity INT NOT NULL, 
     Price DECIMAL(9,2) NOT NULL,
-    Total_ammount DECIMAL(9,2) NOT NULL,
+    Total_amount DECIMAL(9,2) NOT NULL,
     User_ID INT NOT NULL, 
     Product_ID INT NOT NULL, 
     PRIMARY KEY(Invoice_no), 
@@ -175,4 +175,11 @@ DELIMITER ;
 
   ```
   ---
- 
+
+
+load data local infile 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/product.csv'
+into table product
+fields terminated by ','
+enclosed by '"'
+lines terminated by '\n'
+ignore 1 rows;
