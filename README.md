@@ -171,7 +171,7 @@ END //
 DELIMITER ;
 
   ```
-* Trigger which set the total amount of the cart, when the user adds or removes a product - 
+* Trigger which sets the total amount of the cart, when the user adds or removes a product - 
 ```sql 
 create trigger total_amount
 before insert on sales
