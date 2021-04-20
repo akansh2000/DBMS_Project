@@ -117,7 +117,7 @@
   execute stmt;
   END //	
   DELIMITER ;
-  ---
+  ```
 
 * Function to update and insert into cart.
   ```sql
@@ -169,8 +169,7 @@ BEGIN
 update product set description="No description available for this product" where description='';
 END //
 DELIMITER ;
-
-  ```
+```
 * Trigger which sets the total amount of the cart, when the user adds or removes a product - 
 ```sql 
 create trigger total_amount
@@ -184,7 +183,7 @@ end
 ---
 
 * Command to import the CSV file - 
-```
+```sql
 load data local infile 'C:/ProgramData/MySQL/MySQL Server 5.7/Uploads/product.csv'
 into table product
 fields terminated by ','
